@@ -3,12 +3,15 @@ package MLSClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
-class Client {
+public class Client {
     public static int port= 3000;
     public static String ipAdres="0.0.0.0";
     public static String userName="none";
@@ -32,7 +35,7 @@ class Client {
 //        stop();
     }
 
-    private static LicenceToken getLicenseToken() throws Exception {
+    public static LicenceToken getLicenseToken() throws Exception {
 
         if (licenceToken==null)
         {
@@ -94,12 +97,12 @@ class Client {
 
 }
 
-    private static void start(int port,String ipAdres) {
+    public static void start(int port, String ipAdres) {
         Client.port = port;
         Client.ipAdres=ipAdres;
 
     }
-    private static void stop() {
+    public static void stop() {
         if (licenceTokenThread!=null)
         {
             licenceTokenThread.stopThread();
@@ -112,7 +115,7 @@ class Client {
 
     }
 
-    private static void setLicence(String userName,String licenseKey) {
+    public static void setLicence(String userName, String licenseKey) {
         Client.userName = userName;
         Client.licenseKey=licenseKey;
 
